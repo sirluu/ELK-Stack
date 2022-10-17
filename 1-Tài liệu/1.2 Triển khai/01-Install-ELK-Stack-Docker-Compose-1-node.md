@@ -14,7 +14,7 @@ IV. [Cấu hình hiển thị Logs trên Kibana](#showlogkibana)
 
 ## Phần I. <a name="chuanbi"></a>Chuẩn bị
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/8.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/8.png"></h3>
 
 Mô hình triển khai bao gồm các thảnh phần:
 - 1 máy chủ cài đặt ELK Stack:
@@ -78,7 +78,7 @@ Docker Compose version v2.5.0
 ### 2. Cài đặt ELK Stack
 - Cấu trúc thư mục cài đặt ELK Stack trên Docker Compose
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/9.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/9.png"></h3>
 
 Trong đó:
   - `*.yml`: Các file có định dạng .yml là những file cấu hình của các phần mêm elaticsearch,logstash,kibana sử dụng cấu trúc ngôn ngũ yaml
@@ -133,12 +133,12 @@ $ docker compose up -d
 ```
 - Sau khi Docker Compose hoàn thành cài đặt thì kiểm tra một số thành phần như sau:
   - Kiểm tra trạng thái hoạt động của các Container
-  <h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/10.png"></h3>
+  <h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/10.png"></h3>
   
   - kiểm tra trạng thái hoạt động của Elasticsearch trên trình duyệt thông qua Port 9200
-  <h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/11.png"></h3>
+  <h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/11.png"></h3>
   - kiểm tra trạng thái hoạt động của kibana trên trình duyệt thông qua Port 5601
-  <h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/12.png"></h3>
+  <h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/12.png"></h3>
 
 ## Phần III. <a name="installbeats"></a>Cài đặt Beats client gửi log về ELK Stack
 
@@ -251,7 +251,7 @@ systemctl start filebeat
 **` Bước 1`**: Download Winlogbeat
 - Thực hiện tải bộ cài [tại đây](https://www.elastic.co/downloads/beats/winlogbeat)
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/32.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/32.png"></h3>
 
 - Tiếp theo thực hiện giải nén bộ cài vào đường dẫn: `C:\Program Files` và thực hiện rename folder đã giải nén về tên: `Winlogbeat`
 
@@ -332,7 +332,7 @@ PS C:\Program Files\Winlogbeat> .\winlogbeat.exe test config -c .\winlogbeat.yml
 - thực hiện khởi động và kiểm tra trạng thái winlogbeat:
   - khởi động : `Start-Service winlogbeat`
   - Kiểm tra :
-  <h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/33.png"></h3>
+  <h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/33.png"></h3>
 
 ## Phần IV. <a name="showlogkibana"></a>Cấu hình hiển thị Logs trên Kibana
 ### 1. Khởi các file pipeine config tiếp nhận dữ liệu chuyển về
@@ -358,7 +358,7 @@ output {                                // Chuyển dữ liệu đến thiết b
 
 - Truy cập địa chỉ IP kibana theo IP của ELK, ví dụ: http://192.168.70.50:5601, chọn `Discover` trong `Index Management` của `Elasticsearch`. Ở đây bạn sẽ thấy các index có tiền tố là filebeat, chính là các index lưu dữ liệu log do Filebeat gửi đến Logstash và Logstash chuyển đến lưu tại Elasticsearch.
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/13.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/13.png"></h3>
 
 - Để truy vấn bằng Kibana ta sẽ tạo các Index patterns, đó là truy vấn thông tin các index có tiền tố là filebeat-, nhấn vào Index patterns của Kibana, bấm vào Create index pattern
 
@@ -366,11 +366,11 @@ output {                                // Chuyển dữ liệu đến thiết b
 - Chọn `@timestamp` ở mục Time Filter field name, rồi nhấn Create Index Pattern
 - Cuối cùng, bấm vào `Discover`, để xem thông tin về các `log`. Mặc định đang liệt các log 15 phút cuối
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/14.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/14.png"></h3>
 
 
 > Khi không khởi tạo giá trị `index` trong phần output thì mặc định tiền tố các index data sẽ có các tiền tố là metadata của beats là filebeat hay winlogbeat tương ứng.
 
 - Thực hiện tương tự ta có kết quả đối với winlogbeat
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/34.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/34.png"></h3>
