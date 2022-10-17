@@ -5,7 +5,7 @@
 ### -  Mô hình luồng xử lý dữ liệu
 
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/46.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/46.png"></h3>
 
 - Mội thành phần xử lý dữ liệu hay điều hướng các request đều được hoạt động dưới hình thức HA nhằm mục đích đảm bảo tính ổn định, tăng hiệu năng xử lý của hệ thống.
 
@@ -13,7 +13,7 @@
 
 
 ### -  Mô hình triển khai thiết bị vật lý
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/47.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/47.png"></h3>
 
 - Hệ thống hoạt động dựa trên mô hình phân lớp, các lớp giao tiếp với nhau thông qua 1 địa chỉ IP VIP thể thực hiện điều chỉnh HA các request gửi đến hệ thống
 - Quý tắc đăt roles cho cụm `Elastcisearch`:
@@ -626,7 +626,7 @@ root@elk-service01:/elk-cluster-setup#
 
 **kiểm tra các dịch vụ**
 - haproxy-keepalived: Do IP VIP mới được thiết lập trên 1 node dẫn đến ở thời điểm hiện tại node này sẽ là được gán IP VIP cho dải Public và Private
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/66.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/66.png"></h3>
 
 - elk-coordinating01
 ```sh
@@ -652,7 +652,7 @@ root@elk-service01:~/elk-cluster-setup#
 ```
 
 - kibana01 sử dụng IP VIP: https://192.168.70.63:5602
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/67.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/67.png"></h3>
 
 ### 2.5: ELk-Service02
 **Chuần bị**
@@ -681,7 +681,7 @@ root@elk-service02:/elk-cluster-setup#
 ```
 - haproxy-keepalived: khi node service02 hoàn thành setup IP VIP local sẽ được chuyển về node này do được cấu hình làm master trong file config
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/68.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/68.png"></h3>
 
 - elk-coordinating02
 ```sh
@@ -820,10 +820,10 @@ root@elk-master03:~#
 ### 1. Kibana
 - Link: http://192.168.70.63:5602
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/69.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/69.png"></h3>
 
 ### HAproxy
 
 - Link: http://192.168.70.63:8080/stats
 
-<h3 align="center"><img src="../../../ELK-Stack/03-Images/dosc/50.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/50.png"></h3>
