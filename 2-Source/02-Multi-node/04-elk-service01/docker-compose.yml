@@ -1,0 +1,62 @@
+version: '2.2'
+services:
+  elk-coordinating01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
+    container_name: elk-coordinating01
+    volumes:
+      - ./elasticsearch-elk-coordinating01.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ${ES_DATA}:/usr/share/elasticsearch/data:rw
+      - ${ES_LOGS}:/usr/share/elasticsearch/logs:rw
+      - ${PATH_REPO}:/usr/share/elasticsearch/snapshots:rw
+      - ${CERTS_DIR}:/usr/share/elasticsearch/config/certs:ro
+    ports:
+      - ${ES_PORT}:${ES_PORT}
+      - ${ES_TRANSPORT_PORT}:${ES_TRANSPORT_PORT}
+    environment:
+      - cluster.name=${CLUSTER_NAME}
+      - ELASTIC_PASSWORD=${PASS_ELASTIC}
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xmx2g -Xms2g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    network_mode: "host"
+  elk-logstash01:
+    image: docker.elastic.co/logstash/logstash:${ELK_VERSION}
+    container_name: elk-logstash01
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ${CERTS_DIR}:/usr/share/logstash/certs:ro
+    ports:
+      - "${LOGSTASH_PORT}:${LOGSTASH_PORT}/tcp"
+      - "${LOGSTASH_PORT}:${LOGSTASH_PORT}/udp"
+    environment:
+      - LS_JAVA_OPTS=-Xmx256m -Xms256m
+    network_mode: "host"
+
+  elk-kibana01:
+    image: docker.elastic.co/kibana/kibana:${ELK_VERSION}
+    container_name: elk-kibana01
+    volumes:
+      - ./elk-kibana01.yml:/usr/share/kibana/config/kibana.yml:ro
+      - ${KIBANA_DIR}:/usr/share/kibana/data:rw
+      - ${CERTS_DIR}:/usr/share/kibana/config/certs:ro
+    environment:
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=${PASS_KIBANA}
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
+    ports:
+      - "${KIBANA_PORT}:${KIBANA_PORT}"
+    network_mode: "host"
+  keepalived-haproxy01:
+    image: pelin/haproxy-keepalived:v1.0.0
+    container_name: keepalived-haproxy01
+    volumes:
+      - ./keepalived-haproxy/keepalived/:/etc/keepalived/
+      - ./keepalived-haproxy/haproxy/:/usr/local/etc/haproxy/
+      - ${CERTS_DIR}:/etc/ssl/:ro
+    restart: always
+    network_mode: "host"
+    privileged: true

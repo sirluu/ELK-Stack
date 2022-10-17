@@ -1,0 +1,24 @@
+version: '2.2'
+services:
+  elk-master03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
+    container_name: elk-master03
+    volumes:
+      - ./elasticsearch-elk-master03.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ${ES_DATA}:/usr/share/elasticsearch/data:rw
+      - ${ES_LOGS}:/usr/share/elasticsearch/logs:rw
+      - ${PATH_REPO}:/usr/share/elasticsearch/snapshots:rw
+      - ${CERTS_DIR}:/usr/share/elasticsearch/config/certs:ro
+    ports:
+      - ${ES_PORT}:${ES_PORT}
+      - ${ES_TRANSPORT_PORT}:${ES_TRANSPORT_PORT}
+    environment:
+      - cluster.name=${CLUSTER_NAME}
+      - ELASTIC_PASSWORD=${PASS_ELASTIC}
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xmx2g -Xms2g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    network_mode: "host"

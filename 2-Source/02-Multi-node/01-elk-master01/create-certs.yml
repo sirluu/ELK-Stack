@@ -1,0 +1,57 @@
+version: "2.2"
+
+services:
+  create-certs:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
+    container_name: create-certs
+    volumes:
+      - ${CERTS_DIR}:/usr/share/elasticsearch/config/certs
+    user: "0"
+    command: >
+      bash -c '
+        if [ ! -f config/certs/ca.zip ]; then
+          echo "Creating CA";
+          bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
+          unzip config/certs/ca.zip -d config/certs;
+        fi;
+        if [ ! -f config/certs/certs.zip ]; then
+          echo "Creating certs";
+          echo -ne \
+          "instances:\n"\
+          "  - name: elasticsearch\n"\
+          "    dns:\n"\
+          "      - elk-master01\n"\
+          "      - elk-master02\n"\
+          "      - elk-master03\n"\
+          "      - elk-coordinating01\n"\
+          "      - elk-coordinating02\n"\
+          "      - elk-coordinating03\n"\
+          "      - elk-kibana01\n"\
+          "      - elk-kibana02\n"\
+          "      - elk-kibana03\n"\
+          "      - elk-data01\n"\
+          "      - elk-data02\n"\
+          "    ip:\n"\
+          "      - 10.10.10.10\n"\
+          "      - 10.10.10.11\n"\
+          "      - 10.10.10.12\n"\
+          "      - 10.10.10.13\n"\
+          "      - 10.10.10.14\n"\
+          "      - 10.10.10.15\n"\
+          "      - 10.10.10.16\n"\
+          "      - 10.10.10.17\n"\
+          "      - 10.10.10.20\n"\
+          "      - 192.168.70.63\n"\
+          > config/certs/instances.yml;
+          bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
+          unzip config/certs/certs.zip -d config/certs;
+        fi;
+        echo "Setting file permissions"
+        chown -R 1000:0 config/certs
+      '
+    user: "0"
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f config/certs/elasticsearch/elasticsearch.crt ]"]
+      interval: 1s
+      timeout: 5s
+      retries: 120

@@ -1,0 +1,27 @@
+---
+## Default Elasticsearch configuration from Elasticsearch base image.
+## https://github.com/elastic/elasticsearch/blob/master/distribution/docker/src/docker/config/elasticsearch.yml
+#
+node.name: elk-master02
+node.roles: [master, data_hot, data_content, ingest]
+network.host: 10.10.10.11
+http.port: 9200
+transport.port: 9300
+discovery.seed_hosts: ["elk-master01", "elk-master02", "elk-master03", "elk-data01", "elk-data02", "elk-coordinating01", "elk-coordinating02", "elk-coordinating03"]
+cluster.initial_master_nodes: ["elk-master01", "elk-master02", "elk-master03"]
+bootstrap.memory_lock: true
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs
+path.repo: /usr/share/elasticsearch/snapshots
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: true
+xpack.security.authc.api_key.enabled: true
+xpack.security.transport.ssl.enabled: true
+xpack.security.http.ssl.key: certs/elasticsearch/elasticsearch.key
+xpack.security.http.ssl.certificate: certs/elasticsearch/elasticsearch.crt
+xpack.security.http.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.http.ssl.verification_mode: certificate
+xpack.security.transport.ssl.key: certs/elasticsearch/elasticsearch.key
+xpack.security.transport.ssl.verification_mode: certificate
+xpack.security.transport.ssl.certificate_authorities: certs/ca/ca.crt
+xpack.security.transport.ssl.certificate: certs/elasticsearch/elasticsearch.crt

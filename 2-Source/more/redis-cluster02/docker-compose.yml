@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  redis-cluster02:
+    image: redis:latest
+    container_name: redis-cluster02
+    ports:
+      - "6379:6379"
+      - "16379:16379"
+    network_mode: "host"
+    volumes:
+      - /redis-cache02/data:/data:rw
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+  logstash-redis02:
+    image: docker.elastic.co/logstash/logstash:7.16.2
+    container_name: logstash-redis02
+    volumes:
+      - ./logtash/pipeline/:/usr/share/logstash/pipeline:ro
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m  -Xms256m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    network_mode: "host"
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
