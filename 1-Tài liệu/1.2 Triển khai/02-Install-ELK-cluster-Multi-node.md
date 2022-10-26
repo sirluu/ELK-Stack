@@ -5,7 +5,7 @@
 ### -  Mô hình luồng xử lý dữ liệu
 
 
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/46.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/46.png"></h3>
 
 - Mội thành phần xử lý dữ liệu hay điều hướng các request đều được hoạt động dưới hình thức HA nhằm mục đích đảm bảo tính ổn định, tăng hiệu năng xử lý của hệ thống.
 
@@ -13,7 +13,7 @@
 
 
 ### -  Mô hình triển khai thiết bị vật lý
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/47.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/47.png"></h3>
 
 - Hệ thống hoạt động dựa trên mô hình phân lớp, các lớp giao tiếp với nhau thông qua 1 địa chỉ IP VIP thể thực hiện điều chỉnh HA các request gửi đến hệ thống
 - Quý tắc đăt roles cho cụm `Elastcisearch`:
@@ -290,16 +290,16 @@ echo 'net.ipv4.ip_nonlocal_bind = 1' >> /etc/sysctl.conf
 cd /elk-setup
 ```
 **Chuẩn bị các file setup**
-- Tạo file generation SSL có tên `create-certs.yml` có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/01-elk-master01/create-certs.yml)
+- Tạo file generation SSL có tên `create-certs.yml` có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/01-elk-master01/create-certs.yml)
 
-- Tạo file config `elasticsearch-elk-master01.yml` sử dụng cho elasticsearch nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/01-elk-master01/elasticsearch-elk-master01.yml)
+- Tạo file config `elasticsearch-elk-master01.yml` sử dụng cho elasticsearch nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/01-elk-master01/elasticsearch-elk-master01.yml)
 
-- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/01-elk-master01/docker-compose.yml)
+- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/01-elk-master01/docker-compose.yml)
 
 
 - Kiểm tra danh sách file: file `.env` được khởi tạo ở bước cấu hình chung
 ```sh
-root@elk-master:~/ELK-Stack/02-Multi-node/01-elk-master01# ls -alh
+root@elk-master:~/ELK-Stack/master/02-Multi-node/01-elk-master01# ls -alh
 total 24K
 drwxr-xr-x  2 root root 4.0K Jul  5 10:18 .
 drwxr-xr-x 10 root root 4.0K Jul  5 09:54 ..
@@ -307,7 +307,7 @@ drwxr-xr-x 10 root root 4.0K Jul  5 09:54 ..
 -rw-r--r--  1 root root 2.0K Jul  5 09:56 create-certs.yml
 -rw-r--r--  1 root root  820 Jul  5 09:54 docker-compose.yml
 -rw-r--r--  1 root root 1.4K Jul  5 09:54 elasticsearch-elk-master01.yml
-root@elk-master:~/ELK-Stack/02-Multi-node/01-elk-master01#
+root@elk-master:~/ELK-Stack/master/02-Multi-node/01-elk-master01#
 ```
 
 **Tạo chứng chỉ SSL Self-sign**
@@ -418,9 +418,9 @@ root@elk-master02:/elasticsearch/certs#
 cd /elk-setup
 ```
 - Thực hiện Cài đặt Elasticsearch tương tự đối với node `ELk-Master01` với các file sau:
-  - Nội dung file [elasticsearch-elk-master02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/02-elk-master02/elasticsearch-elk-master02.yml)
+  - Nội dung file [elasticsearch-elk-master02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/02-elk-master02/elasticsearch-elk-master02.yml)
 
-  - Nội dung file [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/02-elk-master02/docker-compose.yml)
+  - Nội dung file [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/02-elk-master02/docker-compose.yml)
 
  - Kiểm tra danh sách file:
  ```sh
@@ -477,9 +477,9 @@ unzip certs.zip
 cd /elk-setup
 ```
 - Thực hiện Cài đặt Elasticsearch tương tự đối với node `ELk-Master01` và `ELk-Master02`
-- Nội dung file [elasticsearch-elk-master03.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/03-elk-master03/elasticsearch-elk-master03.yml)
+- Nội dung file [elasticsearch-elk-master03.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/03-elk-master03/elasticsearch-elk-master03.yml)
 
-- Nội dung file [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/03-elk-master03/docker-compose.yml)
+- Nội dung file [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/03-elk-master03/docker-compose.yml)
 
 - Kiểm tra danh sách file:
 ```sh
@@ -537,11 +537,11 @@ cd /elk-setup
 ```
 
 **`elk-coordinating01`**
-- Tạo file config `elasticsearch-elk-coordinating01.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/04-elk-service01/elasticsearch-elk-coordinating01.yml)
+- Tạo file config `elasticsearch-elk-coordinating01.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/04-elk-service01/elasticsearch-elk-coordinating01.yml)
 
 **`elk-kibana01`**
 
-- Tạo file config `elk-kibana01.yml`. Kibana sẽ trỏ vào Cụm Elasticsearch để đọc dữ liệu thông qua IP VIP được cấu hình để chạy HA cho 3 node `coordinating` có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/04-elk-service01/elk-kibana01.yml)
+- Tạo file config `elk-kibana01.yml`. Kibana sẽ trỏ vào Cụm Elasticsearch để đọc dữ liệu thông qua IP VIP được cấu hình để chạy HA cho 3 node `coordinating` có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/04-elk-service01/elk-kibana01.yml)
 
 **`elk-logstash01`**
 - Tạo thư mục lưu trữ file config và file pipeline xử lý dữ liệu logs đẩy về
@@ -603,7 +603,7 @@ output {
 **`keepalived-haproxy01`**
 
 - Container này sử dụng để khởi tạo IP VIP và xử lý HA cho các hệ thống Redis-cache cũng như ELk-CLuster
-- Tạo thư mục lưu trữ file cấu hình `keepalived.conf` và `haproxy.cfg`, nội dung file config [tại đây](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/2-Source/02-Multi-node/04-elk-service01/keepalived-haproxy)
+- Tạo thư mục lưu trữ file cấu hình `keepalived.conf` và `haproxy.cfg`, nội dung file config [tại đây](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/master/2-Source/02-Multi-node/04-elk-service01/keepalived-haproxy)
 ```sh
 mkdir -p keepalived-haproxy/ keepalived-haproxy/keepalived keepalived-haproxy/haproxy
 ```
@@ -626,7 +626,7 @@ root@elk-service01:/elk-cluster-setup#
 
 **kiểm tra các dịch vụ**
 - haproxy-keepalived: Do IP VIP mới được thiết lập trên 1 node dẫn đến ở thời điểm hiện tại node này sẽ là được gán IP VIP cho dải Public và Private
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/66.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/66.png"></h3>
 
 - elk-coordinating01
 ```sh
@@ -652,17 +652,17 @@ root@elk-service01:~/elk-cluster-setup#
 ```
 
 - kibana01 sử dụng IP VIP: https://192.168.70.63:5602
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/67.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/67.png"></h3>
 
 ### 2.5: ELk-Service02
 **Chuần bị**
 - Thực hiện tương tự node `elk-service01` :
 - Nội dung files tương ứng
-  - Cấu hình config [keepalived-haproxy](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/2-Source/02-Multi-node/05-elk-service02/keepalived-haproxy)
-  - Nội dung cấu hình `config` và `pipeline` sử dụng cho [logstash](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/2-Source/02-Multi-node/05-elk-service02/logstash)
-  - file config [elasticsearch-elk-coordinating02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/05-elk-service02/elasticsearch-elk-coordinating02.yml)
-  - file config [elk-kibana02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/05-elk-service02/elk-kibana02.yml)
-  - file config [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/05-elk-service02/docker-compose.yml)
+  - Cấu hình config [keepalived-haproxy](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/master/2-Source/02-Multi-node/05-elk-service02/keepalived-haproxy)
+  - Nội dung cấu hình `config` và `pipeline` sử dụng cho [logstash](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/master/2-Source/02-Multi-node/05-elk-service02/logstash)
+  - file config [elasticsearch-elk-coordinating02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/05-elk-service02/elasticsearch-elk-coordinating02.yml)
+  - file config [elk-kibana02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/05-elk-service02/elk-kibana02.yml)
+  - file config [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/05-elk-service02/docker-compose.yml)
 
 **Cài đặt service**
 ```sh
@@ -681,7 +681,7 @@ root@elk-service02:/elk-cluster-setup#
 ```
 - haproxy-keepalived: khi node service02 hoàn thành setup IP VIP local sẽ được chuyển về node này do được cấu hình làm master trong file config
 
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/68.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/68.png"></h3>
 
 - elk-coordinating02
 ```sh
@@ -711,11 +711,11 @@ root@elk-service01:~/elk-cluster-setup#
 - Cấu trúc file và thao tác thực hiện tương tự node `elk-service01` và `elk-service02`
 
 - Nội dung file setup và config:
-  - Cấu hình config [keepalived-haproxy](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/2-Source/02-Multi-node/06-elk-service03/keepalived-haproxy)
-  - Nội dung cấu hình `config` và `pipeline` sử dụng cho [logstash](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/2-Source/02-Multi-node/06-elk-service03/logstash)
-  - file config [elasticsearch-elk-coordinating02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/06-elk-service03/elasticsearch-elk-coordinating03.yml)
-  - file config [elk-kibana02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/06-elk-service03/elk-kibana03.yml)
-  - file config [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/06-elk-service03/docker-compose.yml)
+  - Cấu hình config [keepalived-haproxy](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/master/2-Source/02-Multi-node/06-elk-service03/keepalived-haproxy)
+  - Nội dung cấu hình `config` và `pipeline` sử dụng cho [logstash](https://github.com/thang290298/Ghi-chep-Logs/tree/main/ELK-Stack/master/2-Source/02-Multi-node/06-elk-service03/logstash)
+  - file config [elasticsearch-elk-coordinating02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/06-elk-service03/elasticsearch-elk-coordinating03.yml)
+  - file config [elk-kibana02.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/06-elk-service03/elk-kibana03.yml)
+  - file config [docker-compose.yml](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/06-elk-service03/docker-compose.yml)
 
 **Cài đặt service**
 ```sh
@@ -743,9 +743,9 @@ unzip certs.zip
 ```sh
 cd /elk-setup
 ```
-- Tạo file config `elasticsearch-elk-data01.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/07-elk-data01/elasticsearch-elk-data01.yml)
+- Tạo file config `elasticsearch-elk-data01.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/07-elk-data01/elasticsearch-elk-data01.yml)
 
-- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/07-elk-data01/docker-compose.yml)
+- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/07-elk-data01/docker-compose.yml)
 
 - chạy lệnh setup
 ```sh
@@ -757,9 +757,9 @@ docker compose up -d
 
 ### 2.8: ELk-data02
 
-- Tạo file config `elasticsearch-elk-data02.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/07-elk-data02/elasticsearch-elk-data02.yml)
+- Tạo file config `elasticsearch-elk-data02.yml` sử dụng cho elasticsearch có [nội dung](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/07-elk-data02/elasticsearch-elk-data02.yml)
 
-- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/2-Source/02-Multi-node/07-elk-data02/docker-compose.yml)
+- Tạo file setup `docker-compose.yml` nội dung [tại đây](https://github.com/thang290298/Ghi-chep-Logs/blob/main/ELK-Stack/master/2-Source/02-Multi-node/07-elk-data02/docker-compose.yml)
 
 - chạy lệnh setup
 ```sh
@@ -820,10 +820,10 @@ root@elk-master03:~#
 ### 1. Kibana
 - Link: http://192.168.70.63:5602
 
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/69.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/69.png"></h3>
 
 ### HAproxy
 
 - Link: http://192.168.70.63:8080/stats
 
-<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/03-Images/dosc/50.png"></h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/sirluu/ELK-Stack/master/03-Images/dosc/50.png"></h3>
